@@ -1,0 +1,15 @@
+﻿<Window x:Class="Library.Books"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="Books" Height="300" Width="500">
+    <Grid>
+        <StackPanel Margin="20">
+            <DataGrid Name="dgBooks" Height="160" ColumnWidth="*" CanUserAddRows="False" CanUserResizeColumns="True" MinColumnWidth="70" SelectionChanged="dgBooks_SelectionChanged"/>
+            <Button Name="btnSelect" Margin="10" Width="100" Click="btnSelect_Click">Select</Button>
+        </StackPanel>
+    </Grid>
+</Window>

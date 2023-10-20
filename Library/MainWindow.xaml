@@ -1,37 +1,41 @@
-﻿<Window x:Class="Library.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
+        xmlns:EntityClient="clr-namespace:System.Data.Entity.Core.EntityClient;assembly=EntityFramework" x:Class="Library.MainWindow"
         mc:Ignorable="d"
         Title="Home Library" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Name="bBooks" BorderThickness="2" BorderBrush="Black">
+        <Border Grid.Row="0" x:Name="bBooks" BorderThickness="2" BorderBrush="Black">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Margin="20,10">Search Books</Label>
-                    <TextBox Name="tbBookSearch" Width="300" Margin="20,10"></TextBox>
-                    <Button Name="btnAddBook" Width="100" Margin="20,10">Add Book</Button>
+                    <Label Margin="20,10" Content="Search Books"/>
+                    <TextBox x:Name="tbBookSearch" Width="300" Margin="20,10" TextChanged="tbBookSearch_TextChanged"/>
+                    <Button x:Name="btnAddBook" Width="100" Margin="20,10" Click="btnAddBook_Click" Content="Add Book"/>
+                    <Button x:Name="btnRefresh" Width="100" Margin="20,10" Click="btnRefresh_Click" Content="Refresh"/>
                 </StackPanel>
                 <StackPanel>
-                    <DataGridRow Margin="4" Padding="4" MinHeight="150" Name="dgBooks"></DataGridRow>
+                    <DataGrid Margin="4" Padding="4" MinHeight="150" x:Name="dgBooks"  ColumnWidth="*" CanUserAddRows="False" CanUserResizeColumns="True" MinColumnWidth="100" SelectionChanged="dgBooks_SelectionChanged" MouseDoubleClick="dgBooks_MouseDoubleClick">
+                        
+                    </DataGrid>
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Border Grid.Row="1" Name="bMembers" BorderThickness="2" BorderBrush="Black">
+        <Border Grid.Row="1" x:Name="bMembers" BorderThickness="2" BorderBrush="Black">
             <StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    <Label Margin="20,10">Search Members</Label>
-                    <TextBox Name="tbMemberSearch" Width="300" Margin="20,10"></TextBox>
-                    <Button Name="btnAddMember" Width="100" Margin="20,10">Add Member</Button>
+                    <Label Margin="20,10" Content="Search Members"/>
+                    <TextBox x:Name="tbMemberSearch" Width="300" Margin="20,10" TextChanged="tbMemberSearch_TextChanged"/>
+                    <Button x:Name="btnAddMember" Width="100" Margin="20,10" Click="btnAddMember_Click" Content="Add Member"/>
                 </StackPanel>
                 <StackPanel>
-                    <DataGridRow Margin="4" Padding="4" MinHeight="150" Name="dgMembers"></DataGridRow>
+                    <DataGrid Padding="4" MinHeight="150" x:Name="dgMembers" ColumnWidth="*" CanUserAddRows="False" CanUserResizeColumns="True" MinColumnWidth="100" SelectionChanged="dgMembers_SelectionChanged" MouseDoubleClick="dgMembers_MouseDoubleClick"/>
                 </StackPanel>
             </StackPanel>
         </Border>
