@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c7379181cd654bb486c7689a8f5ce59c" Name="Diagram1">
+      <Diagram DiagramId="7b269585dbb24a72b764abf09274eb3f" Name="Diagram1">
         <EntityTypeShape EntityType="LibraryModel.Book" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryModel.BorrowedBook" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LibraryModel.Member" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LibraryModel.BorrowedBook" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="LibraryModel.FK_BorrowedBooks_Book" ManuallyRouted="false" />
         <AssociationConnector Association="LibraryModel.FK_BorrowedBooks_Member" ManuallyRouted="false" />
       </Diagram>

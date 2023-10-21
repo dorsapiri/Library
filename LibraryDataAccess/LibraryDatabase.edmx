@@ -14,9 +14,14 @@
           <Property Name="Author" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Picture" Type="varchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Library.dbo.BorrowedBooks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="BorrowedBooks">
           <Key>
             <PropertyRef Name="BookId" />
+            <PropertyRef Name="MemberId" />
+            <PropertyRef Name="BorrowedDate" />
+            <PropertyRef Name="ReturnDate" />
           </Key>
           <Property Name="BookId" Type="int" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
@@ -33,7 +38,7 @@
         </EntityType>
         <Association Name="FK_BorrowedBooks_Book">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="BorrowedBooks" Type="Self.BorrowedBooks" Multiplicity="0..1" />
+          <End Role="BorrowedBooks" Type="Self.BorrowedBooks" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
               <PropertyRef Name="Id" />
@@ -57,8 +62,15 @@
         </Association>
         <EntityContainer Name="LibraryModelStoreContainer">
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BorrowedBooks" EntityType="Self.BorrowedBooks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BorrowedBooks" EntityType="Self.BorrowedBooks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BorrowedBooks].[BookId] AS [BookId], 
+    [BorrowedBooks].[MemberId] AS [MemberId], 
+    [BorrowedBooks].[BorrowedDate] AS [BorrowedDate], 
+    [BorrowedBooks].[ReturnDate] AS [ReturnDate]
+    FROM [dbo].[BorrowedBooks] AS [BorrowedBooks]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_BorrowedBooks_Book" Association="Self.FK_BorrowedBooks_Book">
             <End Role="Book" EntitySet="Book" />
             <End Role="BorrowedBooks" EntitySet="BorrowedBooks" />
@@ -81,18 +93,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Picture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="BorrowedBook" Relationship="Self.FK_BorrowedBooks_Book" FromRole="Book" ToRole="BorrowedBooks" />
-        </EntityType>
-        <EntityType Name="BorrowedBook">
-          <Key>
-            <PropertyRef Name="BookId" />
-          </Key>
-          <Property Name="BookId" Type="Int32" Nullable="false" />
-          <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <Property Name="BorrowedDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_BorrowedBooks_Book" FromRole="BorrowedBooks" ToRole="Book" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_BorrowedBooks_Member" FromRole="BorrowedBooks" ToRole="Member" />
+          <NavigationProperty Name="BorrowedBooks" Relationship="Self.FK_BorrowedBooks_Book" FromRole="Book" ToRole="BorrowedBooks" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -103,9 +104,23 @@
           <Property Name="RegistaryDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="BorrowedBooks" Relationship="Self.FK_BorrowedBooks_Member" FromRole="Member" ToRole="BorrowedBooks" />
         </EntityType>
+        <EntityType Name="BorrowedBook">
+          <Key>
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="MemberId" />
+            <PropertyRef Name="BorrowedDate" />
+            <PropertyRef Name="ReturnDate" />
+          </Key>
+          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="MemberId" Type="Int32" Nullable="false" />
+          <Property Name="BorrowedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReturnDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_BorrowedBooks_Book" FromRole="BorrowedBooks" ToRole="Book" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_BorrowedBooks_Member" FromRole="BorrowedBooks" ToRole="Member" />
+        </EntityType>
         <Association Name="FK_BorrowedBooks_Book">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
-          <End Role="BorrowedBooks" Type="Self.BorrowedBook" Multiplicity="0..1" />
+          <End Role="BorrowedBooks" Type="Self.BorrowedBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
               <PropertyRef Name="Id" />
@@ -129,8 +144,8 @@
         </Association>
         <EntityContainer Name="LibraryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Books" EntityType="Self.Book" />
-          <EntitySet Name="BorrowedBooks" EntityType="Self.BorrowedBook" />
           <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="BorrowedBooks" EntityType="Self.BorrowedBook" />
           <AssociationSet Name="FK_BorrowedBooks_Book" Association="Self.FK_BorrowedBooks_Book">
             <End Role="Book" EntitySet="Books" />
             <End Role="BorrowedBooks" EntitySet="BorrowedBooks" />
@@ -156,6 +171,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="LibraryModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegistaryDate" ColumnName="RegistaryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BorrowedBooks">
             <EntityTypeMapping TypeName="LibraryModel.BorrowedBook">
               <MappingFragment StoreEntitySet="BorrowedBooks">
@@ -163,15 +187,6 @@
                 <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="BorrowedDate" ColumnName="BorrowedDate" />
                 <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="LibraryModel.Member">
-              <MappingFragment StoreEntitySet="Member">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="RegistaryDate" ColumnName="RegistaryDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

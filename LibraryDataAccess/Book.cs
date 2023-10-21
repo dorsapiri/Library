@@ -14,11 +14,18 @@ namespace LibraryDataAccess
     
     public partial class Book
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Book()
+        {
+            this.BorrowedBooks = new HashSet<BorrowedBook>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Author { get; set; }
         public string Picture { get; set; }
     
-        public virtual BorrowedBook BorrowedBook { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BorrowedBook> BorrowedBooks { get; set; }
     }
 }

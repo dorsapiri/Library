@@ -96,9 +96,7 @@ namespace LibraryDataAccess.ViewModel
                                  select book;
 
 
-            return availableBooks as List<Book>;
-
-            //return db.Books.Join(db.BorrowedBooks, book => book.Id, borrow => borrow.BookId, (book, borrow) => new { book, borrow }).Where(book => book.book.Id == book.borrow.BookId) as List<Book> ;
+            return availableBooks.ToList();
 
 
         }

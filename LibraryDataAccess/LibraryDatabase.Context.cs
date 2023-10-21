@@ -26,7 +26,7 @@ namespace LibraryDataAccess
         }
     
         public virtual DbSet<Book> Books { get; set; }
-        public virtual DbSet<BorrowedBook> BorrowedBooks { get; set; }
         public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<BorrowedBook> BorrowedBooks { get; set; }
     }
 }
