@@ -12,15 +12,12 @@ namespace LibraryDataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class BorrowedBook
+    public partial class sysdiagram
     {
-        public int BorrowedBooksHistoryId { get; set; }
-        public int BookId { get; set; }
-        public int MemberId { get; set; }
-        public System.DateTime BorrowedDate { get; set; }
-        public System.DateTime ReturnDate { get; set; }
-    
-        public virtual Book Book { get; set; }
-        public virtual Member Member { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
