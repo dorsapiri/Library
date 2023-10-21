@@ -13,9 +13,9 @@ namespace LibraryDataAccess.ViewModel
         bool Delete(Book book);
         List<Book> SelectAll();
         List<Book> SelectByName(string name);
+        List<Book> SelectAvailableBooks();
         List<Book> SelectByAuthor(string authorName);
         List<Book> SelectByAuthorOrName(string str);
-        List<Book> SelectBooksNotBorrowed();
         bool Update(Book book);
         void Save();
     }

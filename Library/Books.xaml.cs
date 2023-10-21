@@ -42,7 +42,7 @@ namespace Library
         private void FillData() { 
             using(UnitOfWork db = new UnitOfWork())
             {
-                dgBooks.ItemsSource = db.IBookDataAccess.SelectAll();
+                dgBooks.ItemsSource = db.IBookDataAccess.SelectAvailableBooks();
             }
             
             

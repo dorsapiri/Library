@@ -14,5 +14,6 @@ namespace LibraryDataAccess.ViewModel
         void Save();
         BorrowedBook GetByBookId(int id);
         List<BorrowedBook> GetByMemberId(int id);
+        
     }
 }

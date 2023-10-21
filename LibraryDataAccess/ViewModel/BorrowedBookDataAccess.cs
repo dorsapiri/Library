@@ -28,6 +28,7 @@ namespace LibraryDataAccess.ViewModel
             }
         }
 
+
         public BorrowedBook GetByBookId(int id)
         {
             return db.BorrowedBooks.First(x => x.BookId == id);

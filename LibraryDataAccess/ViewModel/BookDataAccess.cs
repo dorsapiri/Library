@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -84,9 +85,22 @@ namespace LibraryDataAccess.ViewModel
                 ).ToList();
         }
 
-        public List<Book> SelectBooksNotBorrowed()
+        public List<Book> SelectAvailableBooks()
         {
-            
+            var borrowedBookIds = from borrow in db.BorrowedBooks
+                                  select borrow.BookId;
+
+            var availableBooks = from book in db.Books
+                                     //join borrowed in db.BorrowedBooks
+                                 where !borrowedBookIds.Contains(book.Id)
+                                 select book;
+
+
+            return availableBooks as List<Book>;
+
+            //return db.Books.Join(db.BorrowedBooks, book => book.Id, borrow => borrow.BookId, (book, borrow) => new { book, borrow }).Where(book => book.book.Id == book.borrow.BookId) as List<Book> ;
+
+
         }
     }
 }
