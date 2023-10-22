@@ -46,12 +46,13 @@ namespace Library
             isEditing = true;
 
             tbMemberName.Text = editingMember.Name;
-            tbDateRegistary.DisplayDate = editingMember.RegistaryDate;
-            if(dgBorrowedBook.ItemsSource == null)
+            tbDateRegistary.SelectedDate = editingMember.RegistaryDate;
+            fillData();
+            if (dgBorrowedBook.Items.Count == 0)
             {
                 btnDeleteBorrowedBook.IsEnabled = false;
             }
-            fillData();
+            
         }
         public void fillData() {
             using(UnitOfWork db = new UnitOfWork())

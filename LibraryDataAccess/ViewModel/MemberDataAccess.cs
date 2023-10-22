@@ -11,8 +11,6 @@ namespace LibraryDataAccess.ViewModel
 {
     public class MemberDataAccess :IMemberDataAccess
     {
-        
-
         LibraryEntities db;
         public MemberDataAccess(LibraryEntities libraryEntities) { 
             db = libraryEntities;
@@ -31,7 +29,6 @@ namespace LibraryDataAccess.ViewModel
             }
              
         }
-
         public bool Delete(Member member)
         {
             try
@@ -72,5 +69,15 @@ namespace LibraryDataAccess.ViewModel
         {
             return db.Members.Where(x => x.Name.Trim().ToLower().StartsWith(name)).ToList();
         }
+
+       /* public List<MemberInfo> SelectCustomColumns()
+        {
+             
+            return db.Members.Select(member => new MemberInfo { 
+                Name = member.Name,
+                RegistaryDate = member.RegistaryDate,
+                Borrowed = ""
+            }).ToList();
+        }*/
     }
 }

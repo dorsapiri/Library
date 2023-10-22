@@ -14,15 +14,15 @@ using System.Threading.Tasks;
 
 namespace LibraryDataAccess.ViewModel
 {
-    
-    public class BookDataAccess:IBookDataAccess
+
+    public class BookDataAccess : IBookDataAccess
     {
-       
-        LibraryEntities db ;
-        
+
+        LibraryEntities db;
+
         public BookDataAccess(LibraryEntities libraryEntities)
         {
-            db= libraryEntities;
+            db = libraryEntities;
         }
 
         public bool Insert(Book newBook)
@@ -46,7 +46,7 @@ namespace LibraryDataAccess.ViewModel
                 return true;
             }
             catch { return false; }
-            
+
         }
 
 
@@ -62,9 +62,10 @@ namespace LibraryDataAccess.ViewModel
                 db.Entry(book).State = EntityState.Modified;
                 return true;
             }
-            catch {return false; }
+            catch { return false; }
         }
-        public void Save() {
+        public void Save()
+        {
             db.SaveChanges();
         }
 
@@ -75,7 +76,8 @@ namespace LibraryDataAccess.ViewModel
 
         public List<Book> SelectByAuthor(string authorName)
         {
-            return db.Books.Where(x => x.Author.Trim().ToLower().StartsWith(authorName)).ToList();
+            return db.Books.Where(x => x.Author.Trim().ToLower().StartsWith(authorName))
+                .ToList();
         }
 
         public List<Book> SelectByAuthorOrName(string str)
@@ -87,18 +89,25 @@ namespace LibraryDataAccess.ViewModel
 
         public List<Book> SelectAvailableBooks()
         {
-            var borrowedBookIds = from borrow in db.BorrowedBooks
+            /*var borrowedBookIds = from borrow in db.BorrowedBooks
                                   select borrow.BookId;
 
             var availableBooks = from book in db.Books
                                      //join borrowed in db.BorrowedBooks
                                  where !borrowedBookIds.Contains(book.Id)
-                                 select book;
+                                 select book;*/
+            var availableBooks = db.Books.Where(book => book.BorrowedBooks.All(history => history.ReturnDate <= DateTime.Now));
 
 
             return availableBooks.ToList();
 
 
         }
+
+        /*public List<BookInfo> SelectBooksCustomColumn()
+        {
+            List<BookInfo> resultList = db.Books.Select(b => new BookInfo { Title = b.Name, Author = b.Author }).ToList();
+            return resultList;
+        }*/
     }
 }

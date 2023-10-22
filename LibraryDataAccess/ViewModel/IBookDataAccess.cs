@@ -12,6 +12,7 @@ namespace LibraryDataAccess.ViewModel
         bool Insert(Book newBook);
         bool Delete(Book book);
         List<Book> SelectAll();
+        //List<BookInfo> SelectBooksCustomColumn();
         List<Book> SelectByName(string name);
         List<Book> SelectAvailableBooks();
         List<Book> SelectByAuthor(string authorName);

@@ -11,6 +11,7 @@ namespace LibraryDataAccess.ViewModel
         bool Insert(Member newMember);
         bool Delete(Member member);
         List<Member> SelectAll();
+        //List<MemberInfo> SelectCustomColumns();
         bool Update(Member member);
         List<Member> SelectByName(string name);
         void Save();

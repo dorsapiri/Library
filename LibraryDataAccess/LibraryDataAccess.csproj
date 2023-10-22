@@ -53,6 +53,7 @@
     <Compile Include="Book.cs">
       <DependentUpon>LibraryDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\BookInfo.cs" />
     <Compile Include="BorrowedBook.cs">
       <DependentUpon>LibraryDatabase.tt</DependentUpon>
     </Compile>
@@ -75,6 +76,7 @@
     <Compile Include="Member.cs">
       <DependentUpon>LibraryDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\MemberInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sysdiagram.cs">
       <DependentUpon>LibraryDatabase.tt</DependentUpon>

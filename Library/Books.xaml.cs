@@ -65,7 +65,7 @@ namespace Library
                         BookId = currentBook.Id,
                         MemberId = currentMember.Id,
                         BorrowedDate = DateTime.Now,
-                        ReturnDate = DateTime.Now.AddDays(7)
+                        ReturnDate = DateTime.Now.AddDays(7),
                     };
 
                     db.IBorrowedBookDataAccess.Insert(bookBorrowed);
