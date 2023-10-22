@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Library
 {
@@ -44,6 +45,16 @@ namespace Library
             this.Title = "Edit book";
             tbBookname.Text = editingBook.Name;
             tbAuthor.Text = editingBook.Author;
+            /*try
+            {
+                Uri imgPath = new Uri(editingBook.Picture);
+                imgBook.Source = new BitmapImage(imgPath);
+            }
+            catch(UriFormatException e)
+            {
+                MessageBox.Show("Invalid URI: " + e.Message);
+            }*/
+            
          
         }
         public void ImageSet() { 
@@ -140,5 +151,7 @@ namespace Library
             
            
         }
+
+        
     }
 }

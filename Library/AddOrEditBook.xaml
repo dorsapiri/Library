@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="Add a Book" Height="270" Width="700">
+        Title="Add a Book" Height="200" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -21,13 +21,6 @@
                     <Label Width="100">Author</Label>
                     <TextBox Name="tbAuthor" Width="200"></TextBox>
                 </WrapPanel>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,10">
-                    <Label Width="100">Status</Label>
-                    <ComboBox Name="cbStatus" Width="200">
-                        <ComboBoxItem>Free</ComboBoxItem>
-                        <ComboBoxItem>Borrowed</ComboBoxItem>
-                    </ComboBox>
-                </WrapPanel>
                 <DockPanel>
                     <WrapPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Stretch">
                         <Button Margin="10" Padding="2" Width="80" Name="btnSaveBook" Click="btnSaveBook_Click">Save</Button>
@@ -37,10 +30,9 @@
                 </DockPanel>
             </StackPanel>
         </Border>
-        <Border Grid.Column="1" Name="bBookImg" Width="350">
+        <Border Grid.Column="1" Name="bBookImg">
             <StackPanel>
-                <Image Source="/default-book-Image.jpg" Width="180" Height="180" Margin="0,8" Name="imgBook" />
-                <Button Name="btnInsertPicture" Width="80">Insert Picture</Button>
+                <Image Source="default-book-Image.jpg" Width="180" Height="180" x:Name="imgBook" />
             </StackPanel>
         </Border>
     </Grid>

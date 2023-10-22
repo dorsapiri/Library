@@ -162,6 +162,9 @@
   <ItemGroup>
     <Resource Include="default-book-Image.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gorge-Catches-a-Cold.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
