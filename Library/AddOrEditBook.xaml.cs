@@ -31,6 +31,8 @@ namespace Library
             BookDataAccess = bookDataAccess;
             this.Title = "Add a book";
             btnDeleteBook.IsEnabled = false;
+            /*BitmapImage imageSource = new BitmapImage(new Uri("/LibraryDataAccess;component/default-book-Image.jpg"));
+            imgBook.Source = imageSource;*/
         }
         public AddOrEditBook(BookDataAccess bookDataAccess , Book book)
         {

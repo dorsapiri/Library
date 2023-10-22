@@ -89,7 +89,7 @@
     <Compile Include="ViewModel\BookDataAccess.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\default-book-Image.jpg" />
+    <Resource Include="Images\default-book-Image.jpg" />
     <Content Include="LibraryDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LibraryDatabase.edmx</DependentUpon>

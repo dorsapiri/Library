@@ -55,7 +55,9 @@ namespace Library
             using (UnitOfWork db = new UnitOfWork())
             {
                 dgBooks.ItemsSource = db.IBookDataAccess.SelectAll();
+                dgBooks.AutoGenerateColumns = false;
                 dgMembers.ItemsSource = db.IMemberDataAccess.SelectAll();
+                dgMembers.AutoGenerateColumns = false;
             }
         }
        

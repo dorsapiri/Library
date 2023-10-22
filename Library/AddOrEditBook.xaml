@@ -39,7 +39,7 @@
         </Border>
         <Border Grid.Column="1" Name="bBookImg" Width="350">
             <StackPanel>
-                <Image Width="180" Height="180" Margin="0,8" Name="imgBook" />
+                <Image Source="/default-book-Image.jpg" Width="180" Height="180" Margin="0,8" Name="imgBook" />
                 <Button Name="btnInsertPicture" Width="80">Insert Picture</Button>
             </StackPanel>
         </Border>

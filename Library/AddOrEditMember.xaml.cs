@@ -52,6 +52,9 @@ namespace Library
             {
                 btnDeleteBorrowedBook.IsEnabled = false;
             }
+
+            
+            
             
         }
         public void fillData() {

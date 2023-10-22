@@ -22,7 +22,11 @@
                 </StackPanel>
                 <StackPanel>
                     <DataGrid Margin="4" Padding="4" MinHeight="150" x:Name="dgBooks"  ColumnWidth="*" CanUserAddRows="False" CanUserResizeColumns="True" MinColumnWidth="100" SelectionChanged="dgBooks_SelectionChanged" MouseDoubleClick="dgBooks_MouseDoubleClick">
-                        
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Title" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Author" Binding="{Binding Author}"/>
+                        </DataGrid.Columns>
+
                     </DataGrid>
                 </StackPanel>
             </StackPanel>
@@ -35,7 +39,12 @@
                     <Button x:Name="btnAddMember" Width="100" Margin="20,10" Click="btnAddMember_Click" Content="Add Member"/>
                 </StackPanel>
                 <StackPanel>
-                    <DataGrid Padding="4" MinHeight="150" x:Name="dgMembers" ColumnWidth="*" CanUserAddRows="False" CanUserResizeColumns="True" MinColumnWidth="100" SelectionChanged="dgMembers_SelectionChanged" MouseDoubleClick="dgMembers_MouseDoubleClick"/>
+                    <DataGrid Padding="4" MinHeight="150" x:Name="dgMembers" ColumnWidth="*" CanUserAddRows="False" CanUserResizeColumns="True" MinColumnWidth="100" SelectionChanged="dgMembers_SelectionChanged" MouseDoubleClick="dgMembers_MouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Registary Date" Binding="{Binding RegistaryDate}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </StackPanel>
         </Border>
