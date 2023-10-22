@@ -61,6 +61,13 @@ namespace Library
             using(UnitOfWork db = new UnitOfWork())
             {
                 dgBorrowedBook.ItemsSource = db.IBorrowedBookDataAccess.GetByMemberId(editingMember.Id);
+                var memberBooks =db.IBorrowedBookDataAccess.GetByBooksByMember(editingMember.Id);
+                /*var gridcolumn = new DataGridTextColumn() { 
+                    Header = "Title",
+                    Binding = new Binding("memberBooks.Name")
+                };*/
+                //dgBorrowedBook.Columns.Add(gridcolumn);
+                dgBorrowedBook.AutoGenerateColumns = false;
             }
         }
 

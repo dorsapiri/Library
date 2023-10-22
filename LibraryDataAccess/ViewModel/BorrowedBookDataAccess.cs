@@ -33,6 +33,10 @@ namespace LibraryDataAccess.ViewModel
         {
             return db.BorrowedBooks.First(x => x.BookId == id);
         }
+        public List<Book> GetByBooksByMember(int id)
+        {
+            return db.Books.Where( book => db.BorrowedBooks.All(member => member.MemberId == id)).ToList();
+        }
 
         public List<BorrowedBook> GetByMemberId(int id)
         {

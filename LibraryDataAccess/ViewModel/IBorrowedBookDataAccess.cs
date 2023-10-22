@@ -13,6 +13,7 @@ namespace LibraryDataAccess.ViewModel
         bool Delete(BorrowedBook book);
         void Save();
         BorrowedBook GetByBookId(int id);
+        List<Book> GetByBooksByMember(int id);
         List<BorrowedBook> GetByMemberId(int id);
         
     }
